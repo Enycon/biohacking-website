@@ -1,0 +1,790 @@
+/* =========================================
+   Modernes & Dynamisches Biohacking Theme
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #66BB6A 0%, #388E3C 100%); /* Lebendiger Grün-Verlauf */
+    --secondary-color: #26A69A; /* Teal als Sekundärfarbe */
+    --accent-color: #FFB74D; /* Warmes Orange als Akzent */
+    --background-color: #f0f4f8; /* Heller, kühler Hintergrund */
+    --card-background: #ffffff;
+    --text-color: #37474F; /* Dunkles Blau-Grau */
+    --heading-color: #1B5E20; /* Sehr dunkles Grün */
+    --light-text: #ffffff;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --transition-speed: 0.4s;
+}
+
+/* === Globale Stile === */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color); /* Statischer Hintergrund, da Canvas darüber liegt */
+    color: var(--text-color);
+    font-size: 17px;
+    overflow-x: hidden; /* Verhindert horizontales Scrollen */
+}
+
+img { /* Globale Regel für responsive Bilder */
+    max-width: 100%;
+    height: auto;
+    display: block; /* Verhindert unerwünschten Leerraum unter Bildern */
+}
+
+/* === Three.js Canvas Styling === */
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Hinter allen anderen Inhalten */
+    display: block; /* Verhindert extra Platz unter dem Canvas */
+}
+
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* === Header & Navigation === */
+header {
+    background-color: rgba(255, 255, 255, 0.9); /* Leicht transparent */
+    backdrop-filter: blur(10px); /* Milchglas-Effekt */
+    padding: 1rem 0;
+    position: sticky; /* Bleibt beim Scrollen oben */
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+header h1 a {
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-decoration: none;
+    transition: filter var(--transition-speed) ease;
+}
+header h1 a:hover {
+   filter: brightness(1.1);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 15px;
+    align-items: center; /* Fügt vertikale Zentrierung der LI-Elemente hinzu */
+}
+
+nav ul li a {
+    color: var(--heading-color);
+    text-decoration: none;
+    font-weight: 600;
+    display: inline-flex; /* Macht den Link zum Flex-Container */
+    align-items: center; /* Zentriert den Text vertikal im Link */
+    justify-content: center; /* Zentriert den Text horizontal im Link */
+    text-align: center; /* Stellt sicher, dass umgebrochener Text zentriert ist */
+    padding: 10px 18px;
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    position: relative;
+    overflow: hidden;
+}
+
+nav ul li a::before { /* Unterstreichungs-Animation */
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 3px;
+    background: var(--primary-gradient);
+    transition: all var(--transition-speed) ease;
+    transform: translateX(-50%);
+}
+
+nav ul li a:hover::before,
+nav ul li a.active::before {
+    width: 80%;
+}
+
+nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* === Hauptinhalt & Karten === */
+main {
+    padding: 60px 0;
+}
+
+main .container {
+     background-color: var(--card-background);
+     padding: 40px;
+     border-radius: var(--border-radius);
+     box-shadow: var(--box-shadow);
+     /* Leichte Eintrittsanimation */
+     opacity: 0;
+     transform: translateY(20px);
+     animation: fadeInUp 0.8s ease forwards;
+}
+
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2, h3, h4 {
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+h2 { font-size: 2.5rem; line-height: 1.3; }
+h3 { font-size: 1.8rem; line-height: 1.4; }
+h4 { font-size: 1.3rem; line-height: 1.5; }
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+    text-decoration: none; /* Keine Unterstreichung, da Hover-Effekt anders */
+}
+
+/* === Footer === */
+footer {
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px 0;
+    font-size: 0.95em;
+    color: #546E7A; /* Etwas dunkleres Grau */
+    background-color: rgba(255, 255, 255, 0.7);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+footer a {
+    color: var(--secondary-color);
+}
+
+/* === Blog Spezifisch === */
+.blog-layout {
+    display: grid; /* Grid für mehr Flexibilität */
+    grid-template-columns: 3fr 1fr; /* 3 Teile für Artikel, 1 Teil für Sidebar */
+    gap: 40px;
+}
+
+.artikel-liste article {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    overflow: hidden; /* Für innere Animationen */
+}
+
+.artikel-liste article:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.artikel-liste article h3 a {
+    color: var(--heading-color);
+}
+
+.artikel-liste .meta {
+    font-size: 0.9em;
+    color: #78909C;
+    margin-bottom: 15px;
+    display: block;
+}
+
+.read-more {
+    display: inline-block;
+    background: var(--primary-gradient);
+    color: var(--light-text);
+    padding: 10px 25px;
+    border-radius: 50px; /* Pillenform */
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.read-more:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    color: var(--light-text);
+}
+
+aside {
+    background-color: var(--card-background);
+    padding: 25px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    height: fit-content;
+    position: sticky; /* Sidebar bleibt beim Scrollen sichtbar */
+    top: 100px; /* Abstand zum Header */
+}
+
+aside h3 {
+    margin-top: 0;
+    border-bottom: 3px solid;
+    border-image: var(--primary-gradient) 1;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin-bottom: 12px;
+}
+
+aside ul li a {
+    color: var(--text-color);
+    font-weight: 400;
+    transition: color var(--transition-speed) ease;
+}
+aside ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* === Formulare === */
+form div {
+    margin-bottom: 25px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--heading-color);
+    font-size: 1.1em;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #CFD8DC;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all var(--transition-speed) ease;
+    background-color: #ECEFF1;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2); /* Teal Fokus */
+    background-color: #fff;
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form button {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px; /* Pillenform */
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+form button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* === Startseite Spezifisch === */
+.hero {
+    text-align: center;
+    padding: 40px 0;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    color: #546E7A;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--primary-gradient);
+    color: var(--light-text);
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    margin: 10px;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent; /* Platzhalter für Hover-Effekt */
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    color: var(--light-text);
+    background: linear-gradient(135deg, #76C87A 0%, #489E4C 100%); /* Leicht hellerer Gradient */
+}
+
+/* Optional: Zweiter Button Stil */
+.cta-button:nth-of-type(2) {
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.cta-button:nth-of-type(2):hover {
+    background: var(--secondary-color);
+    color: var(--light-text);
+}
+
+
+.latest-posts {
+    margin-top: 40px;
+}
+
+.latest-posts h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive Grid */
+    gap: 30px;
+}
+
+/* Anpassungen für Artikel im Grid */
+.post-grid article {
+    margin-bottom: 0; /* Kein extra Margin im Grid */
+    display: flex;
+    flex-direction: column; /* Stellt sicher, dass der Button unten ist */
+}
+
+.post-grid article h3 {
+    font-size: 1.4rem; /* Etwas kleiner im Grid */
+}
+.post-grid article p {
+    font-size: 0.95rem; /* Etwas kleiner im Grid */
+    flex-grow: 1; /* Sorgt dafür, dass der Text den Raum füllt */
+    margin-bottom: 20px; /* Abstand zum Button */
+}
+
+.post-grid .read-more {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    align-self: flex-start; /* Button am Anfang der Zeile ausrichten */
+}
+
+/* === Ressourcen Seite Spezifisch === */
+.ressourcen-liste section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.ressourcen-liste section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.ressourcen-liste h3 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    display: inline-block; /* Damit der Border darunter passt */
+    border-bottom: 3px solid;
+    border-image: var(--primary-gradient) 1;
+    padding-bottom: 8px;
+}
+
+.ressourcen-liste ul {
+    list-style: none;
+    padding-left: 0; /* Kein Einzug */
+}
+
+.ressourcen-liste li {
+    margin-bottom: 25px;
+    padding-left: 25px; /* Platz für Icon/Bullet */
+    position: relative;
+}
+
+.ressourcen-liste li::before { /* Einfacher Bullet-Point als Beispiel */
+    content: '✓'; /* Oder ein anderes Icon/Emoji */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+
+.ressourcen-liste li strong {
+    display: block; /* Sorgt für Zeilenumbruch nach dem Titel */
+    margin-bottom: 5px;
+    color: var(--heading-color);
+    font-size: 1.1em;
+}
+
+.ressourcen-liste li a {
+    font-weight: 400; /* Normale Schriftstärke für Links hier */
+    text-decoration: underline; /* Unterstreichung für Klarheit */
+    text-decoration-color: var(--secondary-color);
+    text-underline-offset: 3px;
+}
+
+.ressourcen-liste li a:hover {
+    color: var(--primary-color);
+    text-decoration-color: var(--primary-color);
+}
+
+/* === Interaktive Tools (Ressourcen Seite) === */
+.tool-container {
+    background-color: #f8f9fa; /* Leicht anderer Hintergrund */
+    padding: 25px;
+    border-radius: var(--border-radius);
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+}
+
+.tool-container h4 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--heading-color);
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: 15px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.timer-status {
+    text-align: center;
+    font-style: italic;
+    color: #546E7A;
+    margin-bottom: 20px;
+    min-height: 1.2em; /* Platzhalter, damit Layout nicht springt */
+}
+
+.pomodoro-controls, .sleep-calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Umbruch bei Bedarf */
+}
+
+.tool-button {
+    background: var(--secondary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tool-button:hover {
+    background-color: #1E88E5; /* Dunkleres Blau beim Hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+/* Spezifische Button-Farben */
+#pomodoro-start { background: var(--primary-gradient); }
+#pomodoro-pause { background-color: var(--accent-color); color: var(--text-color); }
+#pomodoro-reset { background-color: #78909C; } /* Grau */
+
+#pomodoro-start:hover { background: linear-gradient(135deg, #76C87A 0%, #489E4C 100%); }
+#pomodoro-pause:hover { background-color: #FFCA28; } /* Helleres Orange */
+#pomodoro-reset:hover { background-color: #546E7A; } /* Dunkleres Grau */
+
+
+.sleep-calculator label {
+    margin-bottom: 0; /* Weniger Abstand in Flexbox */
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+.sleep-calculator input[type="time"] {
+    padding: 8px 12px;
+    font-size: 1em;
+    width: auto; /* Nicht volle Breite */
+    background-color: #fff; /* Weißer Hintergrund für Input */
+}
+
+.result-display {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e3f2fd; /* Heller blauer Hintergrund für Ergebnisse */
+    border-radius: var(--border-radius);
+    text-align: center;
+    color: #0d47a1; /* Dunkelblau */
+    border: 1px solid #bbdefb;
+    width: 100%; /* Volle Breite im Flex-Container */
+    box-sizing: border-box;
+}
+.result-display strong {
+    color: #0d47a1;
+}
+
+
+/* === Hamburger Menu Button === */
+.nav-toggle {
+    display: none; /* Standardmäßig versteckt */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: relative; /* Für die Positionierung der Striche */
+    z-index: 1001; /* Über dem Header-Hintergrund */
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 3px;
+    background-color: var(--heading-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--heading-color);
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+/* === CTA am Artikelende === */
+.cta-artikel-ende {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #e0e0e0; /* Leichte Trennlinie */
+    background-color: #f8f9fa; /* Leicht anderer Hintergrund zur Abhebung */
+    padding: 30px;
+    border-radius: var(--border-radius);
+    margin-left: -30px; /* Gegen den Innenabstand des Artikels */
+    margin-right: -30px; /* Gegen den Innenabstand des Artikels */
+    margin-bottom: -30px; /* Gegen den Innenabstand des Artikels */
+}
+
+.cta-artikel-ende h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    color: var(--heading-color);
+}
+
+.cta-artikel-ende ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cta-artikel-ende ul li {
+    margin-bottom: 10px;
+}
+
+.cta-artikel-ende ul li a {
+    font-weight: 600; /* Etwas dicker für die Links */
+    color: var(--secondary-color);
+}
+
+.cta-artikel-ende ul li a:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
+
+/* === Responsive Anpassungen === */
+@media (max-width: 992px) {
+    .blog-layout {
+        grid-template-columns: 1fr; /* Untereinander auf Tablets */
+    }
+    aside {
+        position: static; /* Kein Sticky auf kleineren Screens */
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    nav ul {
+        margin-top: 20px;
+        flex-wrap: wrap; /* Umbruch bei Bedarf */
+        justify-content: center;
+        gap: 10px;
+    }
+    /* Hamburger-Button auf Mobilgeräten anzeigen */
+    .nav-toggle {
+        display: block;
+        order: 2; /* Nach dem Logo */
+    }
+
+    /* Navigation auf Mobilgeräten standardmäßig verstecken */
+    #main-nav {
+        display: none; /* Versteckt */
+        position: absolute;
+        top: 100%; /* Unterhalb des Headers */
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.98); /* Fast opak */
+        backdrop-filter: blur(5px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        order: 3; /* Nach dem Button */
+        flex-basis: 100%; /* Nimmt volle Breite ein */
+    }
+
+    /* Wenn Menü geöffnet ist (Klasse wird per JS hinzugefügt) */
+    #main-nav.nav-open {
+        display: block; /* Anzeigen */
+    }
+
+    /* Navigationsliste im mobilen Menü */
+    #main-nav ul {
+        flex-direction: column; /* Untereinander */
+        align-items: center; /* Zentriert */
+        gap: 0; /* Kein Abstand zwischen den Listenelementen */
+    }
+
+    #main-nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #main-nav ul li a {
+        display: block; /* Volle Breite klickbar */
+        padding: 15px 20px; /* Größerer Klickbereich */
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        border-radius: 0; /* Keine abgerundeten Ecken im Menü */
+    }
+     #main-nav ul li:last-child a {
+        border-bottom: none;
+    }
+
+    #main-nav ul li a::before { /* Unterstreichung im mobilen Menü anpassen/entfernen */
+       display: none; /* Oder anpassen, z.B. linksbündig */
+    }
+     #main-nav ul li a.active { /* Aktiven Link im mobilen Menü hervorheben */
+        background-color: rgba(102, 187, 106, 0.1); /* Leichter grüner Hintergrund */
+        color: var(--secondary-color);
+    }
+
+
+    /* Hamburger-Animation (wenn Menü offen) */
+    .nav-toggle.active .hamburger {
+        background-color: transparent; /* Mittlerer Strich ausblenden */
+    }
+    .nav-toggle.active .hamburger::before {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .nav-toggle.active .hamburger::after {
+         transform: translateY(-8px) rotate(-45deg);
+    }
+
+
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.6rem; }
+}
+
+@media (max-width: 576px) {
+    body { font-size: 16px; }
+    main .container { padding: 25px; }
+    header h1 { font-size: 1.8rem; }
+    nav ul li a { font-size: 0.95rem; padding: 8px 12px;}
+    form button { padding: 12px 25px; font-size: 1em;}
+}

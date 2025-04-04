@@ -1,0 +1,12 @@
+# System files
+.DS_Store
+Thumbs.db
+
+# Optional: Falls du später einen Build-Prozess einführst
+# /dist
+# /build
+# node_modules
+
+# Project specific folders to ignore
+master/
+tasks/

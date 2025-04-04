@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kontakt - Biohacking für Anfänger</title>
+    <link rel="stylesheet" href="css/style.min.css">
+    <meta name="description" content="Nimm Kontakt mit uns auf. Fragen, Anregungen oder Feedback?">
+</head>
+<body>
+    <canvas id="webgl-canvas"></canvas> <!-- Three.js Canvas -->
+    <header>
+        <div class="container">
+            <h1><a href="index.html">Biohacking für Anfänger</a></h1>
+            <button class="nav-toggle" aria-label="Menü öffnen">
+                <span class="hamburger"></span>
+            </button>
+            <nav id="main-nav">
+                <ul>
+                <li><a href="index.html">Startseite</a></li>
+                <li><a href="grundlagen.html">Grundlagen</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="ressourcen.html">Tools & Ressourcen</a></li>
+                <li><a href="ueber-mich.html">Über Mich</a></li>
+                <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <h2>Kontakt</h2>
+            <p>Hast du Fragen, Anregungen oder Feedback? Nutze das Formular oder schreibe eine E-Mail an [deine-email@adresse.de].</p>
+            
+            <form action="#" method="post"> <!-- Action muss später angepasst werden -->
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="user_name" required>
+            </div>
+            <div>
+                <label for="email">E-Mail:</label>
+                <input type="email" id="email" name="user_email" required>
+            </div>
+            <div>
+                <label for="message">Nachricht:</label>
+                <textarea id="message" name="user_message" required></textarea>
+            </div>
+            <div>
+                <button type="submit">Senden</button>
+            </div>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Dein Name | <a href="impressum.html">Impressum</a> | <a href="datenschutz.html">Datenschutz</a></p>
+        </div>
+    </footer>
+
+    <!-- Three.js Bibliothek -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://cdn.skypack.dev/three@0.132.2/build/three.module.js"
+            }
+        }
+    </script>
+    <!-- Mein Three.js Skript -->
+    <script type="module" src="js/three-background.min.js"></script>
+    <!-- Optional: Mein anderes JS -->
+    <script src="js/script.min.js"></script>
+</body>
+</html>
