@@ -5,8 +5,11 @@ Thumbs.db
 # Optional: Falls du später einen Build-Prozess einführst
 # /dist
 # /build
-# node_modules
+node_modules
 
 # Project specific folders to ignore
 master/
 tasks/
+org/
+blog/research/
+blog/drafts/

@@ -1,0 +1,185 @@
+/* =========================================
+   Component Styles - Buttons, Cards, Forms
+   ========================================= */
+
+/* === Buttons === */
+.cta-button {
+    display: inline-block;
+    background: var(--primary-gradient);
+    color: var(--light-text);
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    margin: 10px;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid transparent; /* Platzhalter für Hover-Effekt */
+}
+
+.cta-button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    color: var(--light-text);
+    background: linear-gradient(135deg, #76C87A 0%, #489E4C 100%); /* Leicht hellerer Gradient */
+}
+
+/* Optional: Zweiter Button Stil */
+.cta-button:nth-of-type(2) {
+    background: none;
+    border: 2px solid var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.cta-button:nth-of-type(2):hover {
+    background: var(--secondary-color);
+    color: var(--light-text);
+}
+
+.read-more {
+    display: inline-block;
+    background: var(--primary-gradient);
+    color: var(--light-text);
+    padding: 10px 25px;
+    border-radius: 50px; /* Pillenform */
+    text-decoration: none;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.read-more:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+    color: var(--light-text);
+}
+
+.tool-button {
+    background: var(--secondary-color);
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tool-button:hover {
+    background-color: #1E88E5; /* Dunkleres Blau beim Hover */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+/* Spezifische Button-Farben */
+#pomodoro-start { background: var(--primary-gradient); }
+#pomodoro-pause { background-color: var(--accent-color); color: var(--text-color); }
+#pomodoro-reset { background-color: #78909C; } /* Grau */
+
+#pomodoro-start:hover { background: linear-gradient(135deg, #76C87A 0%, #489E4C 100%); }
+#pomodoro-pause:hover { background-color: #FFCA28; } /* Helleres Orange */
+#pomodoro-reset:hover { background-color: #546E7A; } /* Dunkleres Grau */
+
+
+/* === Cards === */
+.artikel-liste article,
+.post-grid article,
+aside, /* Sidebar kann auch als Komponente betrachtet werden */
+.tool-container {
+    background-color: var(--card-background);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+}
+
+.artikel-liste article {
+    margin-bottom: 30px;
+    transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+    overflow: hidden; /* Für innere Animationen */
+}
+
+.artikel-liste article:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+.post-grid article {
+    margin-bottom: 0; /* Kein extra Margin im Grid */
+    display: flex;
+    flex-direction: column; /* Stellt sicher, dass der Button unten ist */
+}
+
+aside {
+    padding: 25px;
+    height: fit-content;
+    position: sticky; /* Sidebar bleibt beim Scrollen sichtbar */
+    top: 100px; /* Abstand zum Header */
+}
+
+.tool-container {
+    background-color: #f8f9fa; /* Leicht anderer Hintergrund */
+    padding: 25px;
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+}
+
+
+/* === Formulare === */
+form div {
+    margin-bottom: 25px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+    color: var(--heading-color);
+    font-size: 1.1em;
+}
+
+form input[type="text"],
+form input[type="email"],
+form textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #CFD8DC;
+    border-radius: var(--border-radius);
+    box-sizing: border-box;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+    transition: all var(--transition-speed) ease;
+    background-color: #ECEFF1;
+}
+
+form input[type="text"]:focus,
+form input[type="email"]:focus,
+form textarea:focus {
+    border-color: var(--secondary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(38, 166, 154, 0.2); /* Teal Fokus */
+    background-color: #fff;
+}
+
+form textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+form button { /* Formular-Submit-Button */
+    background: var(--primary-gradient);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px; /* Pillenform */
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 700;
+    transition: all var(--transition-speed) ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+form button:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}

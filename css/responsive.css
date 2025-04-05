@@ -1,0 +1,116 @@
+/* =========================================
+   Responsive Styles
+   ========================================= */
+
+@media (max-width: 992px) {
+    /* === Layout Anpassungen === */
+    .blog-layout {
+        grid-template-columns: 1fr; /* Untereinander auf Tablets */
+    }
+    aside {
+        position: static; /* Kein Sticky auf kleineren Screens */
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    /* === Layout Anpassungen === */
+    header .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    nav ul {
+        margin-top: 20px;
+        flex-wrap: wrap; /* Umbruch bei Bedarf */
+        justify-content: center;
+        gap: 10px;
+    }
+    /* Hamburger-Button auf Mobilgeräten anzeigen */
+    .nav-toggle {
+        display: block;
+        order: 2; /* Nach dem Logo */
+    }
+
+    /* Navigation auf Mobilgeräten standardmäßig verstecken */
+    #main-nav {
+        display: none; /* Versteckt */
+        position: absolute;
+        top: 100%; /* Unterhalb des Headers */
+        left: 0;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.98); /* Fast opak */
+        backdrop-filter: blur(5px);
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 20px 0;
+        order: 3; /* Nach dem Button */
+        flex-basis: 100%; /* Nimmt volle Breite ein */
+    }
+
+    /* Wenn Menü geöffnet ist (Klasse wird per JS hinzugefügt) */
+    #main-nav.nav-open {
+        display: block; /* Anzeigen */
+    }
+
+    /* Navigationsliste im mobilen Menü */
+    #main-nav ul {
+        flex-direction: column; /* Untereinander */
+        align-items: center; /* Zentriert */
+        gap: 0; /* Kein Abstand zwischen den Listenelementen */
+    }
+
+    #main-nav ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+    #main-nav ul li a {
+        display: block; /* Volle Breite klickbar */
+        padding: 15px 20px; /* Größerer Klickbereich */
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+        border-radius: 0; /* Keine abgerundeten Ecken im Menü */
+    }
+     #main-nav ul li:last-child a {
+        border-bottom: none;
+    }
+
+    #main-nav ul li a::before { /* Unterstreichung im mobilen Menü anpassen/entfernen */
+       display: none; /* Oder anpassen, z.B. linksbündig */
+    }
+     #main-nav ul li a.active { /* Aktiven Link im mobilen Menü hervorheben */
+        background-color: rgba(102, 187, 106, 0.1); /* Leichter grüner Hintergrund */
+        color: var(--secondary-color);
+    }
+
+
+    /* Hamburger-Animation (wenn Menü offen) */
+    .nav-toggle.active .hamburger {
+        background-color: transparent; /* Mittlerer Strich ausblenden */
+    }
+    .nav-toggle.active .hamburger::before {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .nav-toggle.active .hamburger::after {
+         transform: translateY(-8px) rotate(-45deg);
+    }
+
+    /* === Typografie Anpassungen === */
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.6rem; }
+}
+
+@media (max-width: 576px) {
+    /* === Globale Anpassungen === */
+    body { font-size: 16px; }
+    main .container { padding: 25px; }
+
+    /* === Layout Anpassungen === */
+    header h1 { font-size: 1.8rem; } /* Gilt nur, wenn kein Logo da ist */
+    #header-logo { max-height: 50px; } /* Logo etwas kleiner auf sehr kleinen Screens */
+    .logo-link { margin-left: -10px; } /* Verschiebung anpassen */
+
+    nav ul li a { font-size: 0.95rem; padding: 8px 12px;}
+
+    /* === Komponenten Anpassungen === */
+    form button { padding: 12px 25px; font-size: 1em;}
+    .cta-button { padding: 10px 25px; font-size: 0.95em; }
+}

@@ -1,0 +1,88 @@
+/* =========================================
+   Base Styles - Variablen, Globale Regeln, Typografie
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --primary-gradient: linear-gradient(135deg, #66BB6A 0%, #388E3C 100%); /* Lebendiger Grün-Verlauf */
+    --secondary-color: #26A69A; /* Teal als Sekundärfarbe */
+    --accent-color: #FFB74D; /* Warmes Orange als Akzent */
+    --background-color: #f0f4f8; /* Heller, kühler Hintergrund */
+    --card-background: #ffffff;
+    --text-color: #37474F; /* Dunkles Blau-Grau */
+    --heading-color: #1B5E20; /* Sehr dunkles Grün */
+    --light-text: #ffffff;
+    --border-radius: 12px;
+    --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+    --transition-speed: 0.4s;
+}
+
+/* === Globale Stile === */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color); /* Statischer Hintergrund, da Canvas darüber liegt */
+    color: var(--text-color);
+    font-size: 17px;
+    overflow-x: hidden; /* Verhindert horizontales Scrollen */
+}
+
+img { /* Globale Regel für responsive Bilder */
+    max-width: 100%;
+    height: auto;
+    display: block; /* Verhindert unerwünschten Leerraum unter Bildern */
+}
+
+/* === Three.js Canvas Styling === */
+#webgl-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Hinter allen anderen Inhalten */
+    display: block; /* Verhindert extra Platz unter dem Canvas */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* === Grundlegende Typografie === */
+h2, h3, h4 {
+    color: var(--heading-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+}
+
+h2 { font-size: 2.5rem; line-height: 1.3; }
+h3 { font-size: 1.8rem; line-height: 1.4; }
+h4 { font-size: 1.3rem; line-height: 1.5; }
+
+p {
+    margin-bottom: 1.5rem;
+}
+
+a {
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color var(--transition-speed) ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+    text-decoration: none; /* Keine Unterstreichung, da Hover-Effekt anders */
+}
+
+/* === Keyframes (falls global genutzt) === */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

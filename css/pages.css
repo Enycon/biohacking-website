@@ -1,0 +1,275 @@
+/* =========================================
+   Page Specific Styles
+   ========================================= */
+
+/* === Startseite Spezifisch === */
+.hero {
+    text-align: center;
+    padding: 40px 0;
+    margin-bottom: 50px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.hero h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    font-size: 1.15rem;
+    color: #546E7A;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+}
+
+.latest-posts {
+    margin-top: 40px;
+}
+
+.latest-posts h2 {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.2rem;
+}
+
+.post-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive Grid */
+    gap: 30px;
+}
+
+/* Anpassungen für Artikel im Grid */
+.post-grid article h3 {
+    font-size: 1.4rem; /* Etwas kleiner im Grid */
+}
+.post-grid article p {
+    font-size: 0.95rem; /* Etwas kleiner im Grid */
+    flex-grow: 1; /* Sorgt dafür, dass der Text den Raum füllt */
+    margin-bottom: 20px; /* Abstand zum Button */
+}
+
+.post-grid .read-more {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    align-self: flex-start; /* Button am Anfang der Zeile ausrichten */
+}
+
+
+/* === Blog Spezifisch (Layout & Sidebar) === */
+.blog-layout {
+    display: grid; /* Grid für mehr Flexibilität */
+    grid-template-columns: 3fr 1fr; /* 3 Teile für Artikel, 1 Teil für Sidebar */
+    gap: 40px;
+}
+
+.artikel-liste article h3 a { /* Spezifisch für Artikelliste, falls nötig */
+    color: var(--heading-color);
+}
+
+.artikel-liste .meta {
+    font-size: 0.9em;
+    color: #78909C;
+    margin-bottom: 15px;
+    display: block;
+}
+
+aside h3 {
+    margin-top: 0;
+    border-bottom: 3px solid;
+    border-image: var(--primary-gradient) 1;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+aside ul {
+    list-style: none;
+    padding: 0;
+}
+
+aside ul li {
+    margin-bottom: 12px;
+}
+
+aside ul li a {
+    color: var(--text-color);
+    font-weight: 400;
+    transition: color var(--transition-speed) ease;
+}
+aside ul li a:hover {
+    color: var(--secondary-color);
+}
+
+
+/* === Ressourcen Seite Spezifisch === */
+.ressourcen-liste section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.ressourcen-liste section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.ressourcen-liste h3 {
+    font-size: 1.6rem;
+    margin-bottom: 25px;
+    display: inline-block; /* Damit der Border darunter passt */
+    border-bottom: 3px solid;
+    border-image: var(--primary-gradient) 1;
+    padding-bottom: 8px;
+}
+
+.ressourcen-liste ul {
+    list-style: none;
+    padding-left: 0; /* Kein Einzug */
+}
+
+.ressourcen-liste li {
+    margin-bottom: 25px;
+    padding-left: 25px; /* Platz für Icon/Bullet */
+    position: relative;
+}
+
+.ressourcen-liste li::before { /* Einfacher Bullet-Point als Beispiel */
+    content: '✓'; /* Oder ein anderes Icon/Emoji */
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+
+.ressourcen-liste li strong {
+    display: block; /* Sorgt für Zeilenumbruch nach dem Titel */
+    margin-bottom: 5px;
+    color: var(--heading-color);
+    font-size: 1.1em;
+}
+
+.ressourcen-liste li a {
+    font-weight: 400; /* Normale Schriftstärke für Links hier */
+    text-decoration: underline; /* Unterstreichung für Klarheit */
+    text-decoration-color: var(--secondary-color);
+    text-underline-offset: 3px;
+}
+
+.ressourcen-liste li a:hover {
+    color: var(--primary-color);
+    text-decoration-color: var(--primary-color);
+}
+
+/* === Interaktive Tools (Ressourcen Seite) === */
+.tool-container h4 {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: var(--heading-color);
+}
+
+.timer-display {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: 15px;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.timer-status {
+    text-align: center;
+    font-style: italic;
+    color: #546E7A;
+    margin-bottom: 20px;
+    min-height: 1.2em; /* Platzhalter, damit Layout nicht springt */
+}
+
+.pomodoro-controls, .sleep-calculator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap; /* Umbruch bei Bedarf */
+}
+
+.sleep-calculator label {
+    margin-bottom: 0; /* Weniger Abstand in Flexbox */
+    font-size: 1em;
+    margin-right: 10px;
+}
+
+.sleep-calculator input[type="time"] {
+    padding: 8px 12px;
+    font-size: 1em;
+    width: auto; /* Nicht volle Breite */
+    background-color: #fff; /* Weißer Hintergrund für Input */
+}
+
+.result-display {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #e3f2fd; /* Heller blauer Hintergrund für Ergebnisse */
+    border-radius: var(--border-radius);
+    text-align: center;
+    color: #0d47a1; /* Dunkelblau */
+    border: 1px solid #bbdefb;
+    width: 100%; /* Volle Breite im Flex-Container */
+    box-sizing: border-box;
+}
+.result-display strong {
+    color: #0d47a1;
+}
+
+
+/* === CTA am Artikelende === */
+.cta-artikel-ende {
+    margin-top: 50px;
+    padding-top: 30px;
+    border-top: 1px solid #e0e0e0; /* Leichte Trennlinie */
+    background-color: #f8f9fa; /* Leicht anderer Hintergrund zur Abhebung */
+    padding: 30px;
+    border-radius: var(--border-radius);
+    margin-left: -30px; /* Gegen den Innenabstand des Artikels */
+    margin-right: -30px; /* Gegen den Innenabstand des Artikels */
+    margin-bottom: -30px; /* Gegen den Innenabstand des Artikels */
+}
+
+.cta-artikel-ende h4 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    color: var(--heading-color);
+}
+
+.cta-artikel-ende ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cta-artikel-ende ul li {
+    margin-bottom: 10px;
+}
+
+.cta-artikel-ende ul li a {
+    font-weight: 600; /* Etwas dicker für die Links */
+    color: var(--secondary-color);
+}
+
+.cta-artikel-ende ul li a:hover {
+    text-decoration: underline;
+    color: var(--primary-color);
+}
